@@ -1,41 +1,41 @@
 #pragma once
 #include <iostream>
 
-// Класс ConsolControl управляет консольным выводом, изменяя значения в двумерном массиве строк
+// РљР»Р°СЃСЃ ConsolControl СѓРїСЂР°РІР»СЏРµС‚ РєРѕРЅСЃРѕР»СЊРЅС‹Рј РІС‹РІРѕРґРѕРј, РёР·РјРµРЅСЏСЏ Р·РЅР°С‡РµРЅРёСЏ РІ РґРІСѓРјРµСЂРЅРѕРј РјР°СЃСЃРёРІРµ СЃС‚СЂРѕРє
 // The ConsolControl class manages console output by modifying values in a 2D array of strings
 class ConsolControl
 {
 public:
-    // Статическая функция для записи текста в координаты (ThisX, ThisY)
+    // РЎС‚Р°С‚РёС‡РµСЃРєР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РїРёСЃРё С‚РµРєСЃС‚Р° РІ РєРѕРѕСЂРґРёРЅР°С‚С‹ (ThisX, ThisY)
     // Static function to write text to the coordinates (ThisX, ThisY)
-    static void WriteСoordinatesXY(std::string newText, int ThisX, int ThisY);
+    static void WriteРЎoordinatesXY(std::string newText, int ThisX, int ThisY);
 
 private:
-    // Статическое поле для уникального идентификатора, используемого для контроля состояния
+    // РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ РїРѕР»Рµ РґР»СЏ СѓРЅРёРєР°Р»СЊРЅРѕРіРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР°, РёСЃРїРѕР»СЊР·СѓРµРјРѕРіРѕ РґР»СЏ РєРѕРЅС‚СЂРѕР»СЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ
     // Static field for a unique identifier used to track state
     static int ID;
 
-    // Статическое поле для двумерного массива строк
+    // РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ РїРѕР»Рµ РґР»СЏ РґРІСѓРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР° СЃС‚СЂРѕРє
     // Static field for a 2D array of strings
     static std::string** ARRAYCONSOL;
 
-    // Статические поля для размера массива по осям X и Y
+    // РЎС‚Р°С‚РёС‡РµСЃРєРёРµ РїРѕР»СЏ РґР»СЏ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР° РїРѕ РѕСЃСЏРј X Рё Y
     // Static fields for array size in X and Y dimensions
     static int XSIZE, YSIZE;
 
-    // Функция для инициализации массива
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РјР°СЃСЃРёРІР°
     // Function to initialize the array
     static void FillArray();
 
-    // Функция для вывода массива на экран
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РІС‹РІРѕРґР° РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
     // Function to print the array to the screen
     static void PrintArray();
 
-    // Функция для копирования данных из одного массива в другой
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РґР°РЅРЅС‹С… РёР· РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР° РІ РґСЂСѓРіРѕР№
     // Function to copy data from one array to another
     static void CopeArray(std::string** newArr);
 
-    // Функция для добавления нового элемента в массив с увеличением его размера
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РІ РјР°СЃСЃРёРІ СЃ СѓРІРµР»РёС‡РµРЅРёРµРј РµРіРѕ СЂР°Р·РјРµСЂР°
     // Function to add a new element to the array, resizing it
     static void AddElement(int xAdd, int yAdd);
 };
