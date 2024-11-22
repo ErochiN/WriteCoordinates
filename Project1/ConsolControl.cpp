@@ -1,86 +1,86 @@
 #include "ConsolControl.h"
 
-// Инициализация статических переменных
+// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС‚Р°С‚РёС‡РµСЃРєРёС… РїРµСЂРµРјРµРЅРЅС‹С…
 // Initialization of static variables
 int ConsolControl::ID = 0;
 int ConsolControl::XSIZE = 1;
 int ConsolControl::YSIZE = 1;
 std::string** ConsolControl::ARRAYCONSOL = new std::string * [ConsolControl::YSIZE];
 
-// Функция для записи текста в координаты (ThisX, ThisY)
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РїРёСЃРё С‚РµРєСЃС‚Р° РІ РєРѕРѕСЂРґРёРЅР°С‚С‹ (ThisX, ThisY)
 // Function to write text to the coordinates (ThisX, ThisY)
-void ConsolControl::WriteСoordinatesXY(std::string newText, int ThisX, int ThisY)
+void ConsolControl::WriteРЎoordinatesXY(std::string newText, int ThisX, int ThisY)
 {
-    // Очистка экрана (для Windows)
+    // РћС‡РёСЃС‚РєР° СЌРєСЂР°РЅР° (РґР»СЏ Windows)
     // Clear the screen (for Windows)
     system("cls");
 
-    // Если это первый вызов, инициализируем массив
+    // Р•СЃР»Рё СЌС‚Рѕ РїРµСЂРІС‹Р№ РІС‹Р·РѕРІ, РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РјР°СЃСЃРёРІ
     // If it's the first call, initialize the array
     if (ID == 0)
         FillArray();
 
     int tempX, tempY;
 
-    // Определяем новые размеры массива, если координаты превышают текущий размер
+    // РћРїСЂРµРґРµР»СЏРµРј РЅРѕРІС‹Рµ СЂР°Р·РјРµСЂС‹ РјР°СЃСЃРёРІР°, РµСЃР»Рё РєРѕРѕСЂРґРёРЅР°С‚С‹ РїСЂРµРІС‹С€Р°СЋС‚ С‚РµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ
     // Determine new array sizes if coordinates exceed current size
     tempX = (ThisX > XSIZE) ? ThisX : XSIZE;
     tempY = (ThisY > YSIZE) ? ThisY : YSIZE;
 
-    // Добавляем элемент в массив с новыми размерами
+    // Р”РѕР±Р°РІР»СЏРµРј СЌР»РµРјРµРЅС‚ РІ РјР°СЃСЃРёРІ СЃ РЅРѕРІС‹РјРё СЂР°Р·РјРµСЂР°РјРё
     // Add element to the array with new sizes
     AddElement(tempX, tempY);
 
-    // Обновляем текущие размеры
+    // РћР±РЅРѕРІР»СЏРµРј С‚РµРєСѓС‰РёРµ СЂР°Р·РјРµСЂС‹
     // Update current sizes
     XSIZE = tempX;
     YSIZE = tempY;
 
-    // Записываем новый текст в указанную ячейку массива
+    // Р—Р°РїРёСЃС‹РІР°РµРј РЅРѕРІС‹Р№ С‚РµРєСЃС‚ РІ СѓРєР°Р·Р°РЅРЅСѓСЋ СЏС‡РµР№РєСѓ РјР°СЃСЃРёРІР°
     // Write new text to the specified array cell
     ARRAYCONSOL[ThisY - 1][ThisX - 1] = newText;
 
-    // Выводим текущий массив на экран
+    // Р’С‹РІРѕРґРёРј С‚РµРєСѓС‰РёР№ РјР°СЃСЃРёРІ РЅР° СЌРєСЂР°РЅ
     // Print the current array to the screen
     PrintArray();
 
-    // Увеличиваем ID для следующего вызова
+    // РЈРІРµР»РёС‡РёРІР°РµРј ID РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ РІС‹Р·РѕРІР°
     // Increment ID for the next call
     ID++;
 }
 
-// Функция для инициализации массива строк
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РјР°СЃСЃРёРІР° СЃС‚СЂРѕРє
 // Function to initialize the array of strings
 void ConsolControl::FillArray()
 {
     ARRAYCONSOL[0] = new std::string[XSIZE];
 }
 
-// Функция для вывода массива на экран
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РІС‹РІРѕРґР° РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
 // Function to print the array to the screen
 void ConsolControl::PrintArray()
 {
-    // Проходим по всем строкам массива
+    // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј СЃС‚СЂРѕРєР°Рј РјР°СЃСЃРёРІР°
     // Iterate through all rows of the array
     for (int i = 0; i < YSIZE; i++)
     {
-        // Проходим по всем столбцам в строке
+        // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј СЃС‚РѕР»Р±С†Р°Рј РІ СЃС‚СЂРѕРєРµ
         // Iterate through all columns in the row
         for (int j = 0; j < XSIZE; j++)
         {
-            // Выводим элемент массива с пробелом
+            // Р’С‹РІРѕРґРёРј СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° СЃ РїСЂРѕР±РµР»РѕРј
             // Print array element with a space
             std::cout << ARRAYCONSOL[i][j] << " ";
         }
-        std::cout << std::endl; // Переход на новую строку
+        std::cout << std::endl; // РџРµСЂРµС…РѕРґ РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ
     }
 }
 
-// Функция для копирования данных из одного массива в другой
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РґР°РЅРЅС‹С… РёР· РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР° РІ РґСЂСѓРіРѕР№
 // Function to copy data from one array to another
 void ConsolControl::CopeArray(std::string** newArr)
 {
-    // Копируем данные из ARRAYCONSOL в новый массив newArr
+    // РљРѕРїРёСЂСѓРµРј РґР°РЅРЅС‹Рµ РёР· ARRAYCONSOL РІ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ newArr
     // Copy data from ARRAYCONSOL to the new array newArr
     for (int i = 0; i < YSIZE; i++)
     {
@@ -91,30 +91,30 @@ void ConsolControl::CopeArray(std::string** newArr)
     }
 }
 
-// Функция для добавления элемента в массив с увеличением его размера
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РјР°СЃСЃРёРІ СЃ СѓРІРµР»РёС‡РµРЅРёРµРј РµРіРѕ СЂР°Р·РјРµСЂР°
 // Function to add an element to the array with resizing
 void ConsolControl::AddElement(int xAdd, int yAdd)
 {
-    // Создаем новый массив с увеличенными размерами
+    // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ СЃ СѓРІРµР»РёС‡РµРЅРЅС‹РјРё СЂР°Р·РјРµСЂР°РјРё
     // Create a new array with the increased size
     std::string** addString = new std::string * [yAdd];
 
-    // Инициализируем строки нового массива
+    // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЃС‚СЂРѕРєРё РЅРѕРІРѕРіРѕ РјР°СЃСЃРёРІР°
     // Initialize the rows of the new array
     for (int i = 0; i < yAdd; i++)
         addString[i] = new std::string[xAdd];
 
-    // Копируем данные из старого массива в новый
+    // РљРѕРїРёСЂСѓРµРј РґР°РЅРЅС‹Рµ РёР· СЃС‚Р°СЂРѕРіРѕ РјР°СЃСЃРёРІР° РІ РЅРѕРІС‹Р№
     // Copy data from the old array to the new one
     CopeArray(addString);
 
-    // Освобождаем память, занятую старым массивом
+    // РћСЃРІРѕР±РѕР¶РґР°РµРј РїР°РјСЏС‚СЊ, Р·Р°РЅСЏС‚СѓСЋ СЃС‚Р°СЂС‹Рј РјР°СЃСЃРёРІРѕРј
     // Free memory occupied by the old array
     for (int i = 0; i < YSIZE; i++)
         delete[] ARRAYCONSOL[i];
     delete[] ARRAYCONSOL;
 
-    // Устанавливаем указатель на новый массив
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ
     // Set the pointer to the new array
     ARRAYCONSOL = addString;
 }
